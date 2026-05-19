@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <OutputType>Library</OutputType>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Authentications\" />
+      <Folder Include="Context\Migrations\" />
+      <Folder Include="Logging\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="16.1.1" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.27" />
+      <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Taskflow.Application\Taskflow.Application.csproj" />
+      <ProjectReference Include="..\Taskflow.Domain\Taskflow.Domain.csproj" />
+    </ItemGroup>
+    
+
+</Project>
