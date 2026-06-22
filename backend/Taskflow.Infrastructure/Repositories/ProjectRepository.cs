@@ -19,13 +19,16 @@ public class ProjectRepository: IProjectRepository
         
         var access = new ProjectAccessEntity()
         {
+            Name="Owner",
             IsOwner = true,
-            Project = entity,
+            CanCreateTasks = true,
+            CanManageUsers = true,
+            CanRemoveTasks = true,
+            CanUpdateTasks = true,
         };
         
         var member = new ProjectMemberEntity()
         {
-            Project = entity,
             ProjectAccess = access,
             UserId = userId,
         };
@@ -58,7 +61,7 @@ public class ProjectRepository: IProjectRepository
             .Include(el => el.Dasboards)
             .ThenInclude(el => el.Tasks)
             .FirstAsync(el => el.Id == id);
-        
+        project.Dasboards = project.Dasboards.OrderBy(el => el.Index).ToList();
         return project;
     }
 }

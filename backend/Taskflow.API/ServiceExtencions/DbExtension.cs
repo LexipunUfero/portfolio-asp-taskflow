@@ -10,8 +10,7 @@ public static class DbExtension
         IConfiguration config)
     {
         var connectionString = config.GetConnectionString("DefaultConnection");
-        
-        Console.WriteLine(connectionString);
+       
         services.AddDbContext<TaskflowDbContext>(opt =>
         {
             opt.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));

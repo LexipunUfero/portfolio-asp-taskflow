@@ -1,6 +1,7 @@
 using AutoMapper;
 using Taskflow.Application.DTO.Project.Dasboard;
 using Taskflow.Domain.Entities;
+using Taskflow.Domain.Models.DAO;
 
 namespace Taskflow.Application.Mappers;
 
@@ -13,7 +14,7 @@ public class DashboardMapping: Profile
             .ForMember(target => target.Index, opt => opt.MapFrom(s => s.Index))
             .ForMember(target => target.Title, option => option.MapFrom(source => source.Title));
         
-        CreateMap<DashboardUpdateDTO, DashboardEntity>()
+        CreateMap<DashboardDTO, DashboardDAO>()
             .ForMember(target => target.Id, opt => opt.MapFrom(s => s.Id))
             .ForMember(target => target.Index, opt => opt.MapFrom(s => s.Index))
             .ForMember(target => target.Title, option => option.MapFrom(source => source.Title));

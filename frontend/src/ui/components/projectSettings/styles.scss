@@ -1,0 +1,15 @@
+.settings-bar {
+  margin-left: auto;
+  min-width: 40px;
+  border: 2px solid var(--border-color);
+
+  .header {
+    border-bottom: 2px solid #fff;
+  }
+
+  button {
+    width: 100%;
+    min-height: 40px;
+    border-bottom: 2px solid #fff;
+  }
+}

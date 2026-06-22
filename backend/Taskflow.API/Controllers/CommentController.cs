@@ -1,10 +1,12 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Taskflow.Application.DTO.Comments;
 using Taskflow.Application.Interfaces.Services;
 
 namespace Taskflow.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class CommentController:ControllerBase
@@ -25,7 +27,7 @@ public class CommentController:ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(CommentCreateDTO comment)
+    public async Task<IActionResult> Create([FromForm]CommentCreateDTO comment)
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var result = await service.Create(comment,Guid.Parse(userId));

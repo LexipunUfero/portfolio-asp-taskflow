@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Taskflow.Application.Interfaces.Repositories;
 using Taskflow.Domain.Entities;
+using Taskflow.Domain.Models.DAO;
 using Taskflow.Infrastructure.Context;
 
 namespace Taskflow.Infrastructure.Repositories;
@@ -21,36 +22,50 @@ public class DashboardRepository: IDashboardRepository
         
         return entity.Id;
     }
-
-    public async Task<Guid> Update(DashboardEntity entity, Guid userId)
+    
+    public async Task Update(List<DashboardDAO> models,Guid projectId, Guid userId)
     {
-       var trackedEntity = await context.Dashboards.FirstAsync(el=>el.Id == entity.Id);
+        var entities = await context.Dashboards
+            .Include(el=>el.Project)
+            .Where(el=>el.ProjectId == projectId)
+            .ToListAsync();
 
-       if (trackedEntity.Index > entity.Index)
-       {
-            var dependentDashboards = await context.Dashboards
-                .Where(el=>el.Index >= entity.Index
-                && el.Index < trackedEntity.Index
-                && el.ProjectId == trackedEntity.ProjectId)
-                .ExecuteUpdateAsync(s => s.SetProperty(x => x.Index, x => x.Index + 1));
-           
-       }else if (trackedEntity.Index < entity.Index)
-       {
-           var dependentDashboards = await context.Dashboards
-               .Where(el=>el.Index > trackedEntity.Index
-                          && el.Index <= entity.Index
-                          && el.ProjectId == trackedEntity.ProjectId)
-               .ExecuteUpdateAsync(s => s.SetProperty(x => x.Index, x => x.Index - 1));
-       }
+        
+        var modelsMap = models.Where(el=>el.Id.HasValue).ToDictionary(el => el.Id);
+        foreach (var entity in entities.OrderBy(el=>el.Index).ToList())
+        {
+            if (!modelsMap.TryGetValue(entity.Id, out var model))
+            {
+                continue;
+            }
 
-       trackedEntity.Index = entity.Index;
-       trackedEntity.Title = entity.Title;
-       trackedEntity.UpdatedAt = DateTime.UtcNow;
-       trackedEntity.UpdatedBy = userId;
-       
-       await context.SaveChangesAsync();
-       
-       return trackedEntity.Id;
+            if (model.Title != null)
+            {
+                entity.Title = model.Title;
+            }
+
+            if (model.Index != null)
+            {
+                entity.Index = model.Index.Value;
+            }
+            
+            entity.UpdatedAt = DateTime.UtcNow;
+            entity.UpdatedBy = userId;
+        }
+
+        foreach (var model in models.Where(el=>el.Id is null))
+        {
+            var entity = new DashboardEntity()
+            {
+                Index = model.Index ?? 0,
+                Title = model.Title ?? "Temp name",
+                CreatedAt = DateTime.UtcNow,
+                CreatedBy = userId,
+            };
+            context.Dashboards.Add(entity);
+
+        }
+        await context.SaveChangesAsync();
     }
 
     public async Task<List<DashboardEntity>> Get(Guid projectId)

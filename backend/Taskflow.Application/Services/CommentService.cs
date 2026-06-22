@@ -39,7 +39,7 @@ public class CommentService: ICommentService
             fileId = fileResult.Data;
         }
         
-        Guid commentId =  await repository.Create(model.Content,fileId, userId);
+        Guid commentId =  await repository.Create(model.TaskId,model.Content,fileId, userId);
 
         return Result<Guid>.Success(commentId);
     }

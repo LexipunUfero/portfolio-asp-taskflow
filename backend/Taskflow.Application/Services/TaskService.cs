@@ -31,7 +31,7 @@ public class TaskService: ITaskService
     public async Task<Result<Guid>> Create(TaskCreateDTO model, Guid userId)
     {
         var entity =  mapper.Map<TaskEntity>(model);
-        Guid id = await repository.Create(entity,model.Markdowns, userId);
+        Guid id = await repository.Create(entity, userId);
         
         return Result<Guid>.Success(id);
     }
@@ -41,7 +41,7 @@ public class TaskService: ITaskService
         var entity =  mapper.Map<TaskEntity>(model);
         try
         {
-            Guid id = await repository.Update(entity,model.Markdowns, userId);
+            Guid id = await repository.Update(entity, userId);
             return Result<Guid>.Success(id);
         }
         catch (ConcurrencyException e)
@@ -71,6 +71,24 @@ public class TaskService: ITaskService
     {
         Guid resultId = await repository.Delete(id, userId);
         
+        return Result<Guid>.Success(resultId);
+    }
+
+    public async Task<Result<Guid>> Move(TaskMoveDTO model, Guid userId)
+    {
+        Guid resultId = await repository.Move(model, userId);
+        return Result<Guid>.Success(resultId);
+    }
+
+    public async Task<Result<Guid>> AttachMarkdown(TaskAttachMarkdown model, Guid userId)
+    {
+        Guid resultId = await repository.AttachMarkdown(model, userId);
+        return Result<Guid>.Success(resultId);
+    }
+
+    public async Task<Result<Guid>> DeattachMarkdown(TaskAttachMarkdown model, Guid userId)
+    {
+        Guid resultId = await repository.DeattachMarkdown(model, userId);
         return Result<Guid>.Success(resultId);
     }
 }

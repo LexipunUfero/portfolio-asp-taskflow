@@ -16,7 +16,7 @@ public class TaskController: ControllerBase
         this.service = service;
     }
     
-    [HttpGet("/api/projects/{projectId}/tasks")]
+    [HttpGet("GetByProject/{projectId}")]
     public async Task<IActionResult> Get(Guid projectId)
     {
         var result = await service.Get(projectId);
@@ -41,7 +41,30 @@ public class TaskController: ControllerBase
         return Ok(result);
     }
 
-    [HttpPut]
+    [HttpPatch("Move")]
+    public async Task<IActionResult> Move(TaskMoveDTO model)
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var result = await service.Move(model,Guid.Parse(userId));
+        return Ok(result);
+    }
+    [HttpPatch("Markdown/Attach")]
+    public async Task<IActionResult> AttachMarkdown(TaskAttachMarkdown model)
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var result = await service.AttachMarkdown(model,Guid.Parse(userId));
+        return Ok(result);
+    }
+    
+    [HttpPatch("Markdown/Deattach")]
+    public async Task<IActionResult> DeattachMarkdown(TaskAttachMarkdown model)
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var result = await service.DeattachMarkdown(model,Guid.Parse(userId));
+        return Ok(result);
+    }
+
+    [HttpPatch]
     public async Task<IActionResult> Update(TaskUpdateDTO model)
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

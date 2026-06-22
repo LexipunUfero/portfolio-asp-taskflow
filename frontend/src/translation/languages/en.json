@@ -1,0 +1,13 @@
+{
+  "login": "Login",
+  "password": "Password",
+  "login-header": "LOGIN",
+  "projecr-create-header": "CREATE PROJECT",
+  "name": "Title",
+  "create": "Create",
+  "register": "Register",
+  "registration-header": "REGISTRATION",
+  "firstName": "First name",
+  "lastName": "Last name",
+  "create-header": "CREATE"
+}

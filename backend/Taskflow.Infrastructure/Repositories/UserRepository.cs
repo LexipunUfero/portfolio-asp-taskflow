@@ -15,6 +15,7 @@ public class UserRepository: IUserRepository
     public async Task<UserPasswordEntity?> Get(string login)
     {
         var result = await context.UserPasswords
+            .Include(el => el.User)
             .AsNoTracking()
             .FirstOrDefaultAsync(el=>el.Login == login);
         

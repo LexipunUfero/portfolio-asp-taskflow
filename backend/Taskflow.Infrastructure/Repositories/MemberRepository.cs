@@ -53,4 +53,17 @@ public class MemberRepository: IMemberRepository
         await context.SaveChangesAsync();
         return trackedEntity.Id;
     }
+
+    public async Task<ProjectMemberEntity> GetMemberByProjectId(Guid projectId, Guid userId)
+    {
+       var member = await context.ProjectMembers
+           .Include(project => project.Project)
+           .Include(member => member.User)
+           .Include(member => member.ProjectAccess)
+           .Where(el => el.User.Id == userId && el.Project.Id == projectId)
+           .AsNoTracking()
+           .FirstOrDefaultAsync();
+       
+       return member;
+    }
 }

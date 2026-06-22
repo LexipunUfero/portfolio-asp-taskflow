@@ -8,6 +8,17 @@ var builder = WebApplication
 builder.Services.AddMemoryCache();
 builder.Services.AddControllers();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("TaskflowFrontend", policy =>
+    {
+        policy.WithOrigins(builder.Configuration["TASKFLOW_ORIGIN_CORS"])
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
 builder.Services
     .AddMapping()
     .AddDbInfrastructure(builder.Configuration)
@@ -61,8 +72,10 @@ else
 }
 
 app.UseRouting();
+app.UseCors("TaskflowFrontend");
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseMiddleware<LogMiddleware>();
 app.UseMiddleware<ExceptionMiddleware>();
+app.MapControllers();
 app.Run();

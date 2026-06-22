@@ -13,10 +13,11 @@ public class CommentRepository: ICommentRepository
         this.context = context;
     }
     
-    public async Task<Guid> Create(string content, Guid? fileId, Guid userId)
+    public async Task<Guid> Create(Guid taskId,string content, Guid? fileId, Guid userId)
     {
         var entity = new CommentEntity()
         {
+            TaskId = taskId,
             Content = content,
             FileId = fileId,
             CreatedBy = userId,
@@ -30,6 +31,7 @@ public class CommentRepository: ICommentRepository
     public async Task<List<CommentEntity>> Get(Guid taskId)
     {
         var entities =await context.Comments
+            .Include(el=>el.User)
             .AsNoTracking()
             .Where(el => el.TaskId == taskId)
             .ToListAsync();

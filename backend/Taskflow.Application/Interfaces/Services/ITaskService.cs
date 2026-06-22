@@ -10,4 +10,7 @@ public interface ITaskService
     public Task<Result<List<TaskGetDTO>>> Get(Guid projectId);
     public Task<Result<TaskGetDTO>> GetById(Guid id);
     public Task<Result<Guid>> Delete(Guid id, Guid userId);
+    Task<Result<Guid>> Move(TaskMoveDTO model, Guid userId);
+    Task<Result<Guid>> AttachMarkdown(TaskAttachMarkdown model, Guid userId);
+    Task<Result<Guid>> DeattachMarkdown(TaskAttachMarkdown model, Guid userId);
 }

@@ -29,7 +29,7 @@ private readonly IAuthenticationService service;
     
     [AllowAnonymous]
     [HttpPost("register")]
-    public  async Task<IActionResult> Register([FromBody]RegisterDTO register)
+    public  async Task<IActionResult> Register([FromForm]RegisterDTO register)
     {
         var ip  = HttpContext.Connection.RemoteIpAddress?.ToString();
         var result =  await service.Create(register);

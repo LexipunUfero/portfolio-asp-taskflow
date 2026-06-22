@@ -6,7 +6,9 @@ namespace Taskflow.Application.DTO.Project.Member;
 public class MemberGetDTO
 {
     public Guid Id { get; set; }
-    public UserGetDTO User { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public Guid ImageId { get; set; }
     public ProjectAccessGetPreviewDTO Access { get; set; }
     public DateTime Added {get; set;}
 }

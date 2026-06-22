@@ -9,6 +9,7 @@
 
     <ItemGroup>
       <Folder Include="Authentications\" />
+      <Folder Include="Context\Entities\" />
       <Folder Include="Context\Migrations\" />
       <Folder Include="Logging\" />
     </ItemGroup>

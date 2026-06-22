@@ -12,6 +12,11 @@ public class MarkdownMapping:Profile
             .ForMember(entity => entity.Name, option => option.MapFrom(model => model.Title))
             .ForMember(entity => entity.Color, option => option.MapFrom(model => model.Color))
             .ForMember(entity => entity.ProjectId, option => option.MapFrom(model => model.ProjectId));
+        
+        CreateMap<TaskMarkDownEntity,MarkdownGetDTO>()
+            .ForMember(entity => entity.Id, option => option.MapFrom(model => model.Markdown.Id))
+            .ForMember(model => model.Color, option => option.MapFrom(model => model.Markdown.Color))
+            .ForMember(model => model.Title, option => option.MapFrom(entity => entity.Markdown.Name));
 
         CreateMap<MarkdownUpdateDTO, MarkdownEntity>()
             .ForMember(entity => entity.Id, option => option.MapFrom(model => model.Id))

@@ -7,4 +7,5 @@ public class ErrorMessages
     public string ConcurrencyError { get; set; }
     public string InvalidPassword { get; set; }
     public string InvalidLink { get; set; }
+    public string AccessDenied { get; set; }
 }

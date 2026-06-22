@@ -1,0 +1,19 @@
+.table-wrapper {
+  margin: 20px;
+
+  table {
+    thead {
+      th {
+        padding: 10px;
+        border: 1px solid white;
+      }
+    }
+
+    tbody {
+      th {
+        padding: 5px;
+        border: 1px solid white;
+      }
+    }
+  }
+}

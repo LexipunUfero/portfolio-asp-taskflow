@@ -31,5 +31,11 @@ public class ProjectAccessMapping: Profile
             .ForMember(target => target.CanCreateTasks, opt => opt.MapFrom(s => s.CanCreateTasks))
             .ForMember(target => target.CanUpdateTasks, opt => opt.MapFrom(s => s.CanUpdateTasks))
             .ForMember(target => target.CanRemoveTasks, opt => opt.MapFrom(s => s.CanRemoveTasks));
+
+        CreateMap<ProjectAccessEntity, ProjectAccessGetPreviewDTO>()
+            .ForMember(target => target.Id, opt => opt.MapFrom(s => s.Id))
+            .ForMember(target => target.Name, opt => opt.MapFrom(s => s.Name))
+            .ForMember(target => target.IsOwner, opt => opt.MapFrom(s => s.IsOwner));
+
     }
 }

@@ -1,10 +1,12 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Taskflow.Application.DTO.Project.Access;
 using Taskflow.Application.Interfaces.Services;
 
 namespace Taskflow.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class ProjectAccessController:ControllerBase
@@ -25,7 +27,7 @@ public class ProjectAccessController:ControllerBase
         
         return Ok(result);
     }
-    [HttpGet("/api/projects/{projectId}/accesses")]
+    [HttpGet("{projectId}")]
     public async Task<IActionResult> Get(Guid projectId)
     {
         var result = await service.Get(projectId);

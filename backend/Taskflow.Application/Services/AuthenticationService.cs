@@ -50,7 +50,7 @@ public class AuthenticationService: IAuthenticationService
 
         if (hashManager.VerifyPassword(model.Password, user.Password))
         {
-            var token = jwtGenerator.GetToken(user.UserId);
+            var token = jwtGenerator.GetToken(user.User.Id);
             return Result<string>.Success(token);
         }
         
@@ -76,6 +76,7 @@ public class AuthenticationService: IAuthenticationService
         
         var passwordEntity = new UserPasswordEntity
         {
+            Login = model.Login,
             Salt = hashManager.GenerateSalt(),
         };
         passwordEntity.Password = hashManager.HashPassword(model.Password, passwordEntity.Salt);

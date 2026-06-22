@@ -17,8 +17,8 @@ public class ProjectMapping: Profile
 
         CreateMap<ProjectEntity, ProjectGetDTO>()
             .ForMember(x => x.Id, opt => opt.MapFrom(src => src.Id))
-            .ForMember(x => x.Name, opt => opt.MapFrom(src => src.Name))
-            .ForMember(target => target.Dasboards, option => option.MapFrom(source => source.Dasboards));
+            .ForMember(x => x.Title, opt => opt.MapFrom(src => src.Name))
+            .ForMember(target => target.Dashboards, option => option.MapFrom(source => source.Dasboards));
         
     }
 }

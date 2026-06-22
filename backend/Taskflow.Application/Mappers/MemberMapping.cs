@@ -16,7 +16,9 @@ public class MemberMapping: Profile
         CreateMap<ProjectMemberEntity, MemberGetDTO>()
             .ForMember(target => target.Id, opts => opts.MapFrom(src => src.Id))
             .ForMember(target => target.Added, option => option.MapFrom(source => source.CreatedAt))
-            .ForMember(target => target.User, option => option.MapFrom(source => source.User))
+            .ForMember(target => target.FirstName, option => option.MapFrom(source => source.User.FirstName))
+            .ForMember(target => target.LastName, option => option.MapFrom(source => source.User.LastName))
+            .ForMember(target => target.ImageId, option => option.MapFrom(source => source.User.FileId))
             .ForMember(target => target.Access, option => option.MapFrom(source => source.ProjectAccess));
     }
 }

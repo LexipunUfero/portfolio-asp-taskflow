@@ -23,15 +23,19 @@ public class JwtGenerator
         
         var claims = new Claim[]
         {
-            new Claim(JwtRegisteredClaimNames.Sub, userId.ToString())
+            new Claim(JwtRegisteredClaimNames.Sub, userId.ToString()),
+            new Claim(JwtRegisteredClaimNames.Aud, "Audience"),
+            new Claim(JwtRegisteredClaimNames.Iss, "issuer"),
         };
 
         var token = new JwtSecurityToken(
+            issuer: "issuer",
+            audience: "Audience",
             claims: claims,
             expires: DateTime.Now.AddMinutes(jwtSettings.ExpireTime),
             signingCredentials: credentials
         );
-
-        return token.ToString();
+        var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+        return tokenString;
     }
 }

@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Taskflow.Application.DTO.Project;
 using Taskflow.Application.DTO.Project.Dasboard;
@@ -6,6 +7,7 @@ using Taskflow.Application.Interfaces.Services;
 
 namespace Taskflow.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class ProjectController:ControllerBase

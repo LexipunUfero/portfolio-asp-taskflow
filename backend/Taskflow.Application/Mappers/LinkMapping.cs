@@ -10,6 +10,6 @@ public class LinkMapping: Profile
     {
         CreateMap<ProjectLinkSettingsDTO, ProjectMemberDAO>()
             .ForMember(model => model.ProjectId, opts => opts.MapFrom(src => src.ProjectId))
-            .ForMember(model => model.ProjectAccessId, opts => opts.MapFrom(src => src.ProjectAccessId));
+            .ForMember(model => model.ProjectAccessId, opts => opts.MapFrom(src => src.AccessId));
     }
 }

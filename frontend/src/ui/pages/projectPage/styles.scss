@@ -1,0 +1,14 @@
+.project-page {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  .dashboard-zone {
+    display: flex;
+    margin: 20px;
+    height: 100%;
+
+    .moveable {
+      position: fixed;
+    }
+  }
+}
