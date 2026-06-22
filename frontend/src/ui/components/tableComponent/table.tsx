@@ -1,7 +1,9 @@
 import type { CellConfigs, DropBoxCellConfig, TableInputs } from './types'
 import './table.scss'
+import { useTranslation } from 'react-i18next'
 
 function TableComponent<T>({ data, configs }: TableInputs<T>) {
+  const { t } = useTranslation()
   const getCell = (source: T, config: CellConfigs<T>) => {
     if (config.type === 'checkbox') {
       return (
@@ -65,7 +67,7 @@ function TableComponent<T>({ data, configs }: TableInputs<T>) {
         <thead>
           <tr>
             {configs.map((config) => {
-              return <th>{config.name}</th>
+              return <th>{t(config.name)}</th>
             })}
           </tr>
         </thead>

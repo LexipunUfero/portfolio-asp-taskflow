@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import DefaultInput from '../../components/inputs/defaultInput/defaultInput'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import CheckboxInput from '../../components/inputs/checkboxInput/checkboxInput'
 import { useAppDispatch } from '../../../redux/hooks'
 import type { ProjectAccessCreateData } from '../../../data/requestTypes'
@@ -13,7 +13,7 @@ function CreateAccessPopup({
   projectId: string
   onClose: () => void
 }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
   const dispatch = useAppDispatch()
 
   const [access, setAccess] = useState<ProjectAccessCreateData>({
@@ -56,6 +56,12 @@ function CreateAccessPopup({
     })
     handleClose()
   }
+  useEffect(() => {
+    if (!i18n.isInitialized) {
+      return
+    }
+    console.debug(i18n.store.data)
+  }, [i18n.isInitialized])
 
   return (
     <div className="popup">

@@ -88,22 +88,22 @@ function ProjectManagementPage() {
       type: 'text',
     },
     {
-      name: 'createTasks',
+      name: 'canCreateTasks',
       key: 'canCreateTasks',
       type: 'checkbox',
     },
     {
-      name: 'updateTasks',
+      name: 'canUpdateTasks',
       key: 'canUpdateTasks',
       type: 'checkbox',
     },
     {
-      name: 'removeTasks',
+      name: 'canRemoveTasks',
       key: 'canRemoveTasks',
       type: 'checkbox',
     },
     {
-      name: 'manageUsers',
+      name: 'canManageUsers',
       key: 'canManageUsers',
       type: 'checkbox',
     },
@@ -186,7 +186,7 @@ function ProjectManagementPage() {
           title={'link Time (minutes):'}
         ></NumberInput>
         <div>
-          access level:
+          {t('access-level')}:
           <select name="accessId" onChange={handleSelectAccess}>
             <option selected hidden></option>
             {accesses.map((access) => {
@@ -201,7 +201,9 @@ function ProjectManagementPage() {
             })}
           </select>
         </div>
-        <button onClick={handleCreateInviteLink}>Create invite link</button>
+        <button onClick={handleCreateInviteLink}>
+          {t('create-invite-link')}
+        </button>
       </div>
       <div>
         <div className="tabs">
@@ -209,13 +211,13 @@ function ProjectManagementPage() {
             className={isMemberTab ? 'active' : ''}
             onClick={handleSetMemberTab}
           >
-            <h1>{t('Members')}:</h1>
+            <h1>{t('members')}:</h1>
           </button>
           <button
             className={!isMemberTab ? 'active' : ''}
             onClick={handleSetAccessTab}
           >
-            <h1>{t('Accesses')}:</h1>
+            <h1>{t('accesses')}:</h1>
           </button>
         </div>
         <div className="tab-content">
