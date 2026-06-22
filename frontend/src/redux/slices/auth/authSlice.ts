@@ -1,8 +1,8 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 import { authApi } from '../../../api/auth/authApi'
 import type { LoginData } from '../../../ui/popups/loginPopup/types'
 import type { RegistrationData } from '../../../ui/popups/registrationPopup/types'
-import type { IState, ResponseData } from '../../types'
+import type { IState } from '../../types'
 import thunkFactory from '../../thunkFactory'
 
 export interface AuthState extends IState {

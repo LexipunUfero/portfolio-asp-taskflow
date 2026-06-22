@@ -4,7 +4,9 @@ import apiPath from '../concatenation'
 import requests from '../requests'
 
 export const authApi = {
-  login: (data: LoginData) => requests.post(`${apiPath.auth}login`, data),
+  login: (data: LoginData) => {
+    return requests.post(`${apiPath.auth}login`, data)
+  },
 
   register: (data: RegistrationData) =>
     requests.post(`${apiPath.auth}register`, data, 'withFile'),

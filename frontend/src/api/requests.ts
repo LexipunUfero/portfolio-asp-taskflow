@@ -24,6 +24,7 @@ const getRequestData = (method: methodType, data?: any): RequestInit => {
 }
 
 const getFetchResult = async (url: string, requestData: RequestInit) => {
+  console.log('fetch called', `${getBaseUrl()}${url}`)
   return await fetch(`${getBaseUrl()}${url}`, requestData)
 }
 

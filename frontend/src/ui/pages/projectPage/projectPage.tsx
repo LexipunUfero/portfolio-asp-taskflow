@@ -12,9 +12,6 @@ import Dashboard from '../../components/dashboard/dashboard'
 import TaskPreview from '../../components/taskPreview/taskPreview'
 import './styles.scss'
 import ProjectSettings from '../../components/projectSettings/projectSettings'
-import type { MoveableBlock } from './types'
-import { patchDashboardsSlice } from '../../../redux/slices/dashboard/dashboard'
-import type { DashboardUpdateData } from '../../../data/requestTypes'
 import CreateDashboard from '../../components/dashboard/createDashboard'
 import {
   closestCenter,

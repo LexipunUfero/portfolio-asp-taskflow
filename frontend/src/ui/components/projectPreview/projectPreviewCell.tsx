@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import type { ProjectPreviewData } from '../../../api/apiTypes'
 import './styles.scss'
+import type { ProjectPreviewData } from '../../../data/dataTypes'
 
 function ProjectPreviewCell({ project }: { project: ProjectPreviewData }) {
   const navigate = useNavigate()

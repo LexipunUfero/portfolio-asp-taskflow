@@ -1,4 +1,3 @@
-import type { ProjectPreviewData } from '../../../api/apiTypes'
 import { useTranslation } from 'react-i18next'
 import './styles.scss'
 

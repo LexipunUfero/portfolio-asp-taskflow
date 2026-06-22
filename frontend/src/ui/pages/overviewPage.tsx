@@ -5,8 +5,8 @@ import { useAppDispatch } from '../../redux/hooks'
 import { getProjectsSlice } from '../../redux/slices/project/projectSlice'
 import ProjectPreviewCell from '../components/projectPreview/projectPreviewCell'
 import ProjectPreviewCellCreate from '../components/projectPreview/projectPreviewCellCreate'
-import type { ProjectPreviewData } from '../../api/apiTypes'
 import CreateProjectPopup from '../popups/createProjectPopup/createPojectPopup'
+import type { ProjectPreviewData } from '../../data/dataTypes'
 
 function OverviewPage() {
   const dispatch = useAppDispatch()

@@ -1,12 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { IState } from '../../types'
 import thunkFactory from '../../thunkFactory'
-import type {
-  ProjectCreateData,
-  ProjectPreviewData,
-} from '../../../api/apiTypes'
 import { projectApi } from '../../../api/projects/projectsApi'
-import type { ProjectData } from '../../../data/dataTypes'
+import type { ProjectData, ProjectPreviewData } from '../../../data/dataTypes'
+import type { ProjectCreateData } from '../../../data/requestTypes'
 
 export interface ProjectsState extends IState {
   projects: ProjectPreviewData[]

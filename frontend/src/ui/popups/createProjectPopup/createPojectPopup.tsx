@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { useAppDispatch } from '../../../redux/hooks'
-import type { ProjectCreateData } from '../../../api/apiTypes'
 import { useState } from 'react'
 import DefaultInput from '../../components/inputs/defaultInput/defaultInput'
 import { postProjectSlice } from '../../../redux/slices/project/projectSlice'
+import type { ProjectCreateData } from '../../../data/requestTypes'
 
 function CreateProjectPopup() {
   const dispatch = useAppDispatch()
