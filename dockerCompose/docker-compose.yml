@@ -1,0 +1,50 @@
+services:
+  migrations:
+    build:
+      context: ../backend
+      dockerfile: Taskflow.API/Dockerfile
+
+    command: >
+      sh -c "dotnet ef database update"
+
+    depends_on:
+      - mariadb
+  frontend:
+    build: 
+      context: ../frontend
+      args:
+        VITE_TASKFLOW_API_URL: ${TASKFLOW_API_URL}
+    ports:
+      - "${TASKFLOW_FRONTEND_PORT}:80"
+  api:
+    build:
+      context: ../backend
+      dockerfile: Taskflow.API/Dockerfile
+    ports:
+      - "${TASKFLOW_API_PORT}:8080"
+    depends_on:
+      - mariadb
+      - migrations
+    environment:
+      ConnectionStrings__DefaultConnection: "server=mariadb;database=taskflow;user=taskflow_user;password=taskflow_pass"
+      TASKFLOW_ORIGIN_CORS: ${TASKFLOW_FRONTEND_URL}
+      
+  mariadb:
+    image: mariadb:11
+    container_name: taskflow-mariadb
+    restart: always
+
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: taskflow
+      MARIADB_USER: taskflow_user
+      MARIADB_PASSWORD: taskflow_pass
+
+    ports:
+      - "3306:3306"
+
+    volumes:
+      - mariadb_data:/var/lib/mysql
+
+volumes:
+  mariadb_data:

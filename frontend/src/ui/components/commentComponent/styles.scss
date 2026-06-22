@@ -1,0 +1,17 @@
+.comment-block {
+  display: flex;
+  flex-direction: column;
+
+  .content {
+    flex-direction: row;
+
+    .buttons {
+      flex-direction: column;
+      margin: 5px;
+      .input-wrapper {
+        display: inline;
+        margin-right: 10px;
+      }
+    }
+  }
+}

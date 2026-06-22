@@ -1,0 +1,74 @@
+:root {
+  //OTHER
+  --border-color: #456581;
+  /*///////////////////////FONTS//////////////////////////////////////*/
+  --font-main: 'Inter', system-ui, Arial, sans-serif;
+  --font-heading: 'Poppins', system-ui, sans-serif;
+
+  --text-color: #e2e8f0;
+  --text-muted: #94a3b8;
+
+  --font-size-base: 16px;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 28px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  font-size: var(--font-size-base);
+  color: var(--text-color);
+  background: #090e1a;
+  line-height: 1.5;
+}
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: 24px;
+  margin: 0;
+  font-weight: 600;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  margin: 0;
+  font-weight: 600;
+}
+
+p {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.text-sm {
+  font-size: var(--font-size-sm);
+}
+
+.text-base {
+  font-size: var(--font-size-base);
+}
+
+.text-lg {
+  font-size: var(--font-size-lg);
+}
+
+.text-xl {
+  font-size: var(--font-size-xl);
+}
+
+.text-muted {
+  color: var(--text-muted);
+}

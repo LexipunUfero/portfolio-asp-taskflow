@@ -1,0 +1,96 @@
+.invite-form {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  input {
+    width: 60px;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #1a3a6a;
+    background: #0f2a5a;
+    color: #fff;
+    text-align: center;
+    margin-left: 15px;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
+  }
+
+  select {
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #1a3a6a;
+    background: #0f2a5a;
+    color: #fff;
+    cursor: pointer;
+    margin-left: 15px;
+  }
+
+  button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    background: #6366f1;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &:active {
+      opacity: 0.7;
+    }
+  }
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #1a3a6a;
+  margin-bottom: 16px;
+
+  button {
+    padding: 8px 16px;
+    cursor: pointer;
+    border: none;
+    background: none;
+    color: #666;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+
+    &:hover {
+      color: #fff;
+    }
+
+    &.active {
+      color: #fff;
+      border-bottom: 2px solid #6366f1;
+    }
+  }
+}
+
+.tab-content {
+  .actions {
+    margin-left: 40px;
+  }
+  button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    background: #6366f1;
+    color: #fff;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &:active {
+      opacity: 0.7;
+    }
+  }
+}

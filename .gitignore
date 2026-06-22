@@ -1,0 +1,43 @@
+# Build results
+bin/
+obj/
+
+# Rider / VS
+.idea/
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+logs/
+
+# Environment
+.env
+appsettings.Development.json
+
+# Docker volumes / local data
+*.db
+*.sqlite
+
+# EF Core migrations temp
+Migrations/*Snapshot.cs
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Rider local configs
+.idea/
+
+# publish output
+publish/
+
+#front
+node_modules/
+dist/
+.env
+.env.local
+.env.production
